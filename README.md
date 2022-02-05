@@ -5,3 +5,5 @@ Just a classic tetris game with JS language
 - Bentuk Kotak/O
 - Bentuk L
 - Bentuk T
+- Bentuk Z
+- Bentuk I
