@@ -47,19 +47,19 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     let currentRotation = 0;
 
     // bagian menampilkan balok-balok yang datang dengan fungsi random number generator
-    let random = Math.floor(Math.random()*theTetrominoes.length); // mengambil angka acak berdasarkan array balok
+    let random = Math.floor(Math.random() * theTetrominoes.length); // mengambil angka acak berdasarkan array balok
     let current = theTetrominoes [random][currentRotation]; // Menggambarkan kondisi awal balok dalam bentuk 2 dimensi
 
     //buat gambar poisi awal balok 
-    function draw() {
-        current.forEach(index => {
+    function draw() { // fungsi gambar balok dengan div tetromino
+        current.forEach(index => { // gambar lokasi tetromino sesuai bentuk array
             squares[currentPosition + index].classList.add('tetromino');
         });
     };
 
     //hapus gambar poisi awal balok 
     function undraw() {
-        current.forEach(index => {
+        current.forEach(index => { // hapus lokasi tetromino sesuai bentuk array
             squares[currentPosition + index].classList.remove('tetromino');
         });
     };
@@ -69,13 +69,24 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
 
     // fungsi gerak kebawah
     function moveDown() {
-        undraw();
-        currentPosition += width;
-        draw();
+        undraw(); // hapus posisi awal
+        currentPosition += width; // posisi setelah bergerak kebawah
+        draw(); // gambar posisi baru
+        freeze();
     };
 
-
-
+    // fungsi freeze (diam ditempat)
+    function freeze() { // fungsi agar balok tidak keluar grid papan tetris
+        if (current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
+            current.forEach(index => squares[currentPosition + index].classList.add('taken')); // memberi kelas taken pada setiap balok yang salah satunya menuju ke kelas taken
+            
+            // ulangi proses pembuatan balok
+            random = Math.floor(Math.random() * theTetrominoes .length);
+            current = theTetrominoes[random][currentRotation];
+            currentPosition = 4;
+            draw();
+        };
+    };
 
 draw();
 
