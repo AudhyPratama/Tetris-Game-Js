@@ -67,12 +67,53 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     // membuat timeframe agar balok dapat bergerak kebawah
     timerId = setInterval (moveDown, 1000); // perintah gerak kebawah dalam interval 1s (1000ms)
 
+    // fungsi membaca inputan pada keyboard
+    function control(k) {
+        if(k.keyCode === 37){ // kode ASCII keyboard up
+            moveLeft(); // panggil fungsi geser ke kiri
+        } else if (k.keyCode === 38){
+            // rotate
+        } else if (k.keyCode === 39){
+            moveRight();
+        } else if (k.keyCode === 40){
+            moveDown();
+        }
+    };
+
+    document.addEventListener('keyup',control);
+
     // fungsi gerak kebawah
     function moveDown() {
         undraw(); // hapus posisi awal
         currentPosition += width; // posisi setelah bergerak kebawah
         draw(); // gambar posisi baru
         freeze(); // fungsi diam ditempat
+    };
+
+    // fungsi gerak kekiri dengan syarat posisi balok tidak berada di pojok kiri
+    function moveLeft() {
+        undraw();
+        const isAtLeftEdge = current.some (index => (currentPosition + index) % width ===0);
+
+        if (!isAtLeftEdge) currentPosition -= 1;
+
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition +=1;
+        };
+        draw();
+    };
+
+    // fungsi gerak kekanan dengan syarat posisi balok tidak berada di pojok kanan
+    function moveRight() {
+        undraw();
+        const isAtRightEdge = current.some (index => (currentPosition + index) % width === width-1);
+
+        if (!isAtRightEdge) currentPosition += 1;
+
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -=1;
+        };
+        draw();
     };
 
     // fungsi freeze (diam ditempat)
