@@ -10,12 +10,12 @@
 }
 
 .grid div{
-    background-color: red;
+    /* background-color: red; */
     height: 25px;
     width: 25px;
 }
 
 /* Bagian Balok */
-.tetromino{
+.grid .tetromino{
     background-color: blue;
 }

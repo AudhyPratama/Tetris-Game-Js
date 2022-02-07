@@ -43,9 +43,20 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
 
     const theTetrominoes = [lTetromino,zTetromino,tTetromino,oTetromino,iTetromino]; // Pengelompokan Balok berdasarkan array
     
-    let currentPosition = 4; // kondisi saat ini
-    let current = theTetrominoes [0]; // Menggambarkan kondisi awal balok
+    let currentPosition = 4;
+    let currentRotation = 0;
 
-    //buat poisi awal setelah balok dirotasi
-    
+    // bagian menampilkan balok-balok yang datang dengan fungsi random number generator
+    let random = Math.floor(Math.random()*theTetrominoes.length);
+    let current = theTetrominoes [random][currentRotation]; // Menggambarkan kondisi awal balok dalam bentuk 2 dimensi
+
+    //buat gambar poisi awal setelah balok dirotasi
+    function draw() {
+        current.forEach(index => {
+            squares[currentPosition + index].classList.add('tetromino');
+        });
+    }
+
+draw();
+
 });
