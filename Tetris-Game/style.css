@@ -1,7 +1,7 @@
 /* Bagian Container */
 .grid{ 
-    background-color: #cccccc;
-    border: 2px solid #000;
+    background-color: #000;
+    border: 3px solid #cccccc;
     display: flex;
     flex-wrap: wrap;
     height: 500px;

@@ -47,15 +47,35 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     let currentRotation = 0;
 
     // bagian menampilkan balok-balok yang datang dengan fungsi random number generator
-    let random = Math.floor(Math.random()*theTetrominoes.length);
+    let random = Math.floor(Math.random()*theTetrominoes.length); // mengambil angka acak berdasarkan array balok
     let current = theTetrominoes [random][currentRotation]; // Menggambarkan kondisi awal balok dalam bentuk 2 dimensi
 
-    //buat gambar poisi awal setelah balok dirotasi
+    //buat gambar poisi awal balok 
     function draw() {
         current.forEach(index => {
             squares[currentPosition + index].classList.add('tetromino');
         });
-    }
+    };
+
+    //hapus gambar poisi awal balok 
+    function undraw() {
+        current.forEach(index => {
+            squares[currentPosition + index].classList.remove('tetromino');
+        });
+    };
+
+    // membuat timeframe agar balok dapat bergerak kebawah
+    timerId = setInterval (moveDown, 1000); // perintah gerak kebawah dalam interval 1s (1000ms)
+
+    // fungsi gerak kebawah
+    function moveDown() {
+        undraw();
+        currentPosition += width;
+        draw();
+    };
+
+
+
 
 draw();
 
