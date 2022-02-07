@@ -9,5 +9,6 @@ Just a classic tetris game with JS language
 - Bentuk I
 
 **update**
+- added add list tetrominoes using rng
 - added draw and undraw block/tetrominoes
 - added timeframe
