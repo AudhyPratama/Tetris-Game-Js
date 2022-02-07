@@ -12,4 +12,4 @@ Just a classic tetris game with JS language
 - added add list tetrominoes using rng
 - added draw and undraw block/tetrominoes
 - added timeframe
-- added command per timeframe
+- added command per timeframe (move down)
