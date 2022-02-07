@@ -10,3 +10,4 @@ Just a classic tetris game with JS language
 
 **update**
 - added draw and undraw block/tetrominoes
+- added timeframe
