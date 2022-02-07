@@ -13,3 +13,4 @@ Just a classic tetris game with JS language
 - added draw and undraw block/tetrominoes
 - added timeframe
 - added command per timeframe (move down)
+- added freeze command for each block tetrominoes to stop in position
