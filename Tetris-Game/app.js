@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         undraw(); // hapus posisi awal
         currentPosition += width; // posisi setelah bergerak kebawah
         draw(); // gambar posisi baru
-        freeze();
+        freeze(); // fungsi diam ditempat
     };
 
     // fungsi freeze (diam ditempat)
@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             current.forEach(index => squares[currentPosition + index].classList.add('taken')); // memberi kelas taken pada setiap balok yang salah satunya menuju ke kelas taken
             
             // ulangi proses pembuatan balok
-            random = Math.floor(Math.random() * theTetrominoes .length);
-            current = theTetrominoes[random][currentRotation];
-            currentPosition = 4;
-            draw();
+            random = Math.floor(Math.random() * theTetrominoes .length); // mengambil angka acak berdasarkan array balok/tetromino
+            current = theTetrominoes[random][currentRotation]; // meletakan balok/tetromino baru pada posisi awal
+            currentPosition = 4; // posisi awal balok/tetromino
+            draw(); // gambar posisi balok/tetromino
         };
     };
 
