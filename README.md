@@ -13,6 +13,6 @@ Just a classic tetris game with JS language (10x20 blocks)
 - added draw and undraw block/tetrominoes
 - added timeframe
 - added command per timeframe (move down)
-- added freeze command for each block tetrominoes to stop in position
+- added freeze command for each block/tetrominoes to stop in position
 - added keyboard input and movement type
-- added last rotate movement for each
+- added last rotate movement for each blocks/tetrominoes
