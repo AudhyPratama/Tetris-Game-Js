@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         if(k.keyCode === 37){ // kode ASCII keyboard up
             moveLeft(); // panggil fungsi geser ke kiri
         } else if (k.keyCode === 38){
-            // rotate
+            rotate();
         } else if (k.keyCode === 39){
             moveRight();
         } else if (k.keyCode === 40){
@@ -116,6 +116,17 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         draw();
     };
 
+    // fungsi putar 
+    function rotate() {
+        undraw();
+        currentRotation++;
+        if (currentRotation === current.length) { // jika rotasi = 4, maka kembali ke 0
+            currentRotation = 0;
+        };
+        current = theTetrominoes[random][currentRotation];
+        draw();
+    }
+
     // fungsi freeze (diam ditempat)
     function freeze() { // fungsi agar balok tidak keluar grid papan tetris
         if (current.some(index => squares[currentPosition + index + width].classList.contains('taken'))) {
@@ -130,5 +141,8 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     };
 
 draw();
+
+
+
 
 });
