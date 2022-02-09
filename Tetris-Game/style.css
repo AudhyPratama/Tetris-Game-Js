@@ -1,4 +1,10 @@
-/* Bagian Container */
+/* Bagian COntainer */
+.container{
+    display: flex;
+}
+
+
+/* Bagian Grid */
 .grid{ 
     background-color: #000;
     border: 3px solid #cccccc;
@@ -15,7 +21,24 @@
     width: 25px;
 }
 
+/* Bagian Mini Grid */
+.mini-grid{
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+    margin-left: 75px;
+    padding: 10px;
+    width: 100px;
+}
+
+.mini-grid div{
+    height: 25px;
+    width: 25px;
+}
+
+
 /* Bagian Balok */
-.grid .tetromino{
+.tetromino{
     background-color: blue;
 }

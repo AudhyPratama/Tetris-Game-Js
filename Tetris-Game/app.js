@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     const ScoreDisplay = document.querySelector('#score'); // untuk membuat variabel score pada div id score
     const StartBtn = document.querySelector('#start-button'); // untuk membuat variabel pada div id start button
     const width = 10;
+    let nextRandom = 0;
 
     // Bagian Balok/Tetrominoes
     const lTetromino = [ // Balok Berbentuk L
@@ -133,16 +134,41 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             current.forEach(index => squares[currentPosition + index].classList.add('taken')); // memberi kelas taken pada setiap balok yang salah satunya menuju ke kelas taken
             
             // ulangi proses pembuatan balok
-            random = Math.floor(Math.random() * theTetrominoes .length); // mengambil angka acak berdasarkan array balok/tetromino
+            random = nextRandom;
+            nextRandom = Math.floor(Math.random() * theTetrominoes .length); // mengambil angka acak berdasarkan array balok/tetromino
             current = theTetrominoes[random][currentRotation]; // meletakan balok/tetromino baru pada posisi awal
             currentPosition = 4; // posisi awal balok/tetromino
             draw(); // gambar posisi balok/tetromino
+            displayShape();
         };
     };
 
-draw();
+    // fungsi untuk menampilkan next tetromino
+    const displaySquares = document.querySelectorAll('.mini-grid div');
+    const displayWidth = 4;
+    const displayIndex = 0;
 
+    const nextTetrominoes = [
+        [1, displayWidth+1, displayWidth*2+1, 2], // Balok Berbentuk L
+        [0, displayWidth, displayWidth+1, displayWidth*2+1], // Balok Berbentuk Z
+        [1, displayWidth, displayWidth+1, displayWidth+2], // Balok Berbentuk T
+        [0, 1, displayWidth, displayWidth+1], // Balok Berbentuk Kotak/O
+        [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1] // Balok Berbertuk I
+    ]
 
+    // tampilkan balok di mini dislay untuk balok selanjutnya
+    function displayShape() {
+        // untuk menghapus setiap balok yang ada di mini grid
+        displaySquares.forEach(square => {
+            square.classList.remove('tetromino');
+        });
+        nextTetrominoes[nextRandom].forEach(index => {
+            displaySquares[displayIndex + index].classList.add('tetromino');
+        });
+    };
 
+// draw();
+
+    
 
 });
