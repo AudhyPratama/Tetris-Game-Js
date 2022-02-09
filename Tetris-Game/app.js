@@ -92,39 +92,39 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
 
     // fungsi gerak kekiri dengan syarat posisi balok tidak berada di pojok kiri
     function moveLeft() {
-        undraw();
-        const isAtLeftEdge = current.some (index => (currentPosition + index) % width ===0);
+        undraw(); // hapus gambar bagian awal
+        const isAtLeftEdge = current.some (index => (currentPosition + index) % width ===0); // variabel untuk cek posisi apakah berada di pojok kiri papan tetris
 
         if (!isAtLeftEdge) currentPosition -= 1;
 
-        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) { // jika posisi menyentuh bagian div 'taken' maka posisi tidak akan bergerak
             currentPosition +=1;
         };
-        draw();
+        draw(); // gambar bagian baru
     };
 
     // fungsi gerak kekanan dengan syarat posisi balok tidak berada di pojok kanan
     function moveRight() {
-        undraw();
-        const isAtRightEdge = current.some (index => (currentPosition + index) % width === width-1);
+        undraw(); // hapus gambar bagian awal
+        const isAtRightEdge = current.some (index => (currentPosition + index) % width === width-1); // variabel untuk cek posisi apakah berada di pojok kanan papan tetris
 
         if (!isAtRightEdge) currentPosition += 1;
 
-        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) { // jika posisi menyentuh bagian div 'taken' maka posisi tidak akan bergerak
             currentPosition -=1;
         };
-        draw();
+        draw(); // gambar bagian baru
     };
 
     // fungsi putar 
     function rotate() {
-        undraw();
+        undraw(); // hapus gambar bagian awal
         currentRotation++;
         if (currentRotation === current.length) { // jika rotasi = 4, maka kembali ke 0
             currentRotation = 0;
         };
         current = theTetrominoes[random][currentRotation];
-        draw();
+        draw(); // gambar bagian baru
     }
 
     // fungsi freeze (diam ditempat)
