@@ -18,3 +18,4 @@ Just a classic tetris game with JS language (10x20 blocks)
 - added last rotate movement for each blocks/tetrominoes
 
 **Bug List**
+- when rotating blocks canteleport to other side of the tetris board
