@@ -1,5 +1,5 @@
 # Tetris-Game-Js
-Just a classic tetris game with JS language
+Just a classic tetris game with JS language (10x20 blocks)
 
 **List bentuk balok:**
 - Bentuk L
@@ -15,5 +15,4 @@ Just a classic tetris game with JS language
 - added command per timeframe (move down)
 - added freeze command for each block tetrominoes to stop in position
 - added keyboard input and movement type
-- added
-
+- added 
