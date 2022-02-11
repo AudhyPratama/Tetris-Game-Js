@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     let nextRandom = 0;
     let timerId;
     let score = 0;
+    const colors = [
+        'orange',
+        'red',
+        'purple',
+        'yellow',
+        'lightskyblue'
+    ]
 
     // Bagian Balok/Tetrominoes
     const lTetromino = [ // Balok Berbentuk L
@@ -57,6 +64,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     function draw() { // fungsi gambar balok dengan div tetromino
         current.forEach(index => { // gambar lokasi tetromino sesuai bentuk array
             squares[currentPosition + index].classList.add('tetromino');
+            squares[currentPosition + index].style.backgroundColor = colors[random];
         });
     };
 
@@ -64,6 +72,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     function undraw() {
         current.forEach(index => { // hapus lokasi tetromino sesuai bentuk array
             squares[currentPosition + index].classList.remove('tetromino');
+            squares[currentPosition + index].style.backgroundColor = '';
         });
     };
 
@@ -119,6 +128,30 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         draw(); // gambar bagian baru
     };
 
+    ///FIX ROTATION OF TETROMINOS A THE EDGE 
+    function isAtRight() {
+        return current.some(index=> (currentPosition + index + 1) % width === 0)  
+    }
+
+    function isAtLeft() {
+        return current.some(index=> (currentPosition + index) % width === 0)
+    }
+
+    function checkRotatedPosition(P){
+        P = P || currentPosition       //get current position.  Then, check if the piece is near the left side.
+        if ((P+1) % width < 4) {         //add 1 because the position index can be 1 less than where the piece is (with how they are indexed).     
+            if (isAtRight()){            //use actual position to check if it's flipped over to right side
+                currentPosition += 1    //if so, add one to wrap it back around
+                checkRotatedPosition(P) //check again.  Pass position from start, since long block might need to move more.
+            }
+        } else if (P % width > 5) {
+            if (isAtLeft()){
+                currentPosition -= 1
+                checkRotatedPosition(P)
+            }
+        }
+    }
+
     // fungsi putar 
     function rotate() {
         undraw(); // hapus gambar bagian awal
@@ -127,6 +160,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             currentRotation = 0;
         };
         current = theTetrominoes[random][currentRotation];
+        // checkRotatedPosition();
         draw(); // gambar bagian baru
     }
 
@@ -143,6 +177,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             draw(); // gambar posisi balok/tetromino
             displayShape();
             addScore();
+            gameOver();
         };
     };
 
@@ -164,9 +199,11 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         // untuk menghapus setiap balok yang ada di mini grid
         displaySquares.forEach(square => {
             square.classList.remove('tetromino');
+            square.style.backgroundColor = ''
         });
         nextTetrominoes[nextRandom].forEach(index => {
             displaySquares[displayIndex + index].classList.add('tetromino');
+            displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
         });
     };
 
@@ -193,6 +230,8 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
                 scoreDisplay.innerHTML = score;
                 row.forEach(index => {
                     squares[index].classList.remove('taken');
+                    squares[index].classList.remove('tetromino');
+                    squares[index].style.backgroundColor = ''
                 });
                 const squaresRemoved = squares.splice(i, width);
                 squares = squaresRemoved.concat(squares);
@@ -201,8 +240,16 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         }
     }
 
+    // game over
+    function gameOver() {
+        if (current.some(index => squares[currentPosition + index].classList.contains('taken'))) {
+            scoreDisplay.innerHTML = 'end';
+            clearInterval(timerId)
+        }
+    }
 
 
 
-    draw();
+
+    // draw();
 });
