@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             currentRotation = 0;
         };
         current = theTetrominoes[random][currentRotation];
-        // checkRotatedPosition();
+        checkRotatedPosition();
         draw(); // gambar bagian baru
     }
 
