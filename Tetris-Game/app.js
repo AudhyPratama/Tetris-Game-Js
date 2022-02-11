@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigurasi pada file
     const grid = document.querySelector('.grid'); // untuk membuat variabel pada div grid
     let squares = Array.from(document.querySelectorAll('.grid div')); // untuk membuat array pada setiap div
-    const ScoreDisplay = document.querySelector('#score'); // untuk membuat variabel score pada div id score
-    const StartBtn = document.querySelector('#start-button'); // untuk membuat variabel pada div id start button
+    const scoreDisplay = document.querySelector('#score'); // untuk membuat variabel score pada div id score
+    const startBtn = document.querySelector('#start-button'); // untuk membuat variabel pada div id start button
     const width = 10;
     let nextRandom = 0;
+    let timerId;
+    let score = 0;
 
     // Bagian Balok/Tetrominoes
     const lTetromino = [ // Balok Berbentuk L
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
     };
 
     // membuat timeframe agar balok dapat bergerak kebawah
-    timerId = setInterval (moveDown, 1000); // perintah gerak kebawah dalam interval 1s (1000ms)
+    // timerId = setInterval (moveDown, 1000); // perintah gerak kebawah dalam interval 1s (1000ms)
 
     // fungsi membaca inputan pada keyboard
     function control(k) {
@@ -140,15 +142,16 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
             currentPosition = 4; // posisi awal balok/tetromino
             draw(); // gambar posisi balok/tetromino
             displayShape();
+            addScore();
         };
     };
 
     // fungsi untuk menampilkan next tetromino
-    const displaySquares = document.querySelectorAll('.mini-grid div');
+    const displaySquares = document.querySelectorAll('.mini-grid div'); // menampilkan balok di kotak kecil (mini div)
     const displayWidth = 4;
     const displayIndex = 0;
 
-    const nextTetrominoes = [
+    const nextTetrominoes = [ // menampilkan isi tetromino pada kotak kecil
         [1, displayWidth+1, displayWidth*2+1, 2], // Balok Berbentuk L
         [0, displayWidth, displayWidth+1, displayWidth*2+1], // Balok Berbentuk Z
         [1, displayWidth, displayWidth+1, displayWidth+2], // Balok Berbentuk T
@@ -167,8 +170,38 @@ document.addEventListener('DOMContentLoaded',() => { //untuk memberikan konfigur
         });
     };
 
-// draw();
+    // tombol button
+    startBtn.addEventListener('click', () =>{
+        if (timerId) {
+            clearInterval(timerId);
+            timerId = null;
+        } else {
+            draw();
+            timerId = setInterval(moveDown, 1000);
+            nextRandom = Math.floor(Math.random()*theTetrominoes.length)
+            displayShape(); 
+        }
+    });
 
-    
+    // sistem skor
+    function addScore() {
+        for (let i = 0; i < 199 ; i += width) {
+            const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
 
+            if (row.every(index => squares[index].classList.contains('taken'))) {
+                score+=10;
+                scoreDisplay.innerHTML = score;
+                row.forEach(index => {
+                    squares[index].classList.remove('taken');
+                });
+                const squaresRemoved = squares.splice(i, width);
+                console.log(squaresRemoved);
+            }
+        }
+    }
+
+
+
+
+    draw();
 });
