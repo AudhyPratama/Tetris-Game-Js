@@ -20,4 +20,4 @@ Just a classic tetris game with JS language (10x20 blocks)
 
 **Bug List**
 - when rotating blocks canteleport to other side of the tetris board
-- score doesn't work properly
+- score system doesn't work properly
