@@ -17,7 +17,8 @@ Just a classic tetris game with JS language (10x20 blocks)
 - added keyboard input and movement type
 - added last rotate movement for each blocks/tetrominoes
 - added score system
+- Release V 1.0
 
 **Bug List**
-- when rotating blocks canteleport to other side of the tetris board
-- score system doesn't work properly
+- ~~when rotating blocks canteleport to other side of the tetris board~~ FIXED
+- ~~score system doesn't work properly~~ FIXED
