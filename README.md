@@ -16,6 +16,8 @@ Just a classic tetris game with JS language (10x20 blocks)
 - added freeze command for each block/tetrominoes to stop in position
 - added keyboard input and movement type
 - added last rotate movement for each blocks/tetrominoes
+-
 
 **Bug List**
 - when rotating blocks canteleport to other side of the tetris board
+- score doesn't work properly
