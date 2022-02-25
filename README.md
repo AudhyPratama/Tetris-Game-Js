@@ -17,7 +17,6 @@ Just a classic tetris game with JS language (10x20 blocks)
 - added keyboard input and movement type
 - added last rotate movement for each blocks/tetrominoes
 - added score system
-- Release V 1.0
 - ui updated
 
 **Bug List**
