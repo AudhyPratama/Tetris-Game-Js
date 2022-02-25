@@ -1,4 +1,4 @@
-# Tetris-Game-Js
+# Tetris-Game-Js V2.0
 Just a classic tetris game with JS language (10x20 blocks)
 
 **List bentuk balok:**
