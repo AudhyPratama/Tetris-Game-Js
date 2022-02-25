@@ -1,13 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,400;0,700;1,600&family=Roboto:wght@400;700&display=swap');
+
+/* bagian Body */
+body{
+    background-color: #fff;
+    margin: 10px auto;
+}
+
 /* Bagian COntainer */
 .container{
     display: flex;
+}
+
+.h1{
+    background-color: #cccccc;
+    font-family: 'Pacifico', Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.h3{
+    background-color: gold;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 
 /* Bagian Grid */
 .grid{ 
     background-color: #000;
-    border: 3px solid #cccccc;
+    border: 10px solid #cccccc;
     display: flex;
     flex-wrap: wrap;
     height: 500px;
