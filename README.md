@@ -1,7 +1,7 @@
 # Tetris-Game-Js V2.0
 Just a classic tetris game with JS language (10x20 blocks)
 
-**Block Shape List:**
+**Tetrominoes Shape Lists:**
 - L shape
 - Z shape
 - T shape
