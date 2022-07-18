@@ -1,12 +1,12 @@
 # Tetris-Game-Js V2.0
 Just a classic tetris game with JS language (10x20 blocks)
 
-**List bentuk balok:**
-- Bentuk L
-- Bentuk Z
-- Bentuk T
-- Bentuk Kotak/O
-- Bentuk I
+**Block Shape List:**
+- L shape
+- Z shape
+- T shape
+- Square shape or O
+- I shape
 
 **update**
 - added add list tetrominoes using rng
